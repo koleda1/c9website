@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bot Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js -->
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js"
+        }
+    }
+    </script>
+    <script type="module" src="js/cursor-effect.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Three.js canvas -->
+    <canvas id="cursor-effect" class="fixed top-0 left-0 w-full h-full pointer-events-none"></canvas>
+    
+    <header class="w-full bg-black py-4 mb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="/">
+                    <img src="images/zack_logo option002(3)_1_1.gif" alt="Header Logo" class="h-16">
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-white hover:text-pink-300 transition-colors">Home</a>
+                    <button id="toggleCursor" class="glass-panel hover:opacity-80 transition-opacity">
+                        Cursor Effect: ON
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container mx-auto px-4 py-8 relative">
+        <h1 class="text-3xl font-bold mb-8 text-center text-white relative">Discord Bot Dashboard</h1>
+        
+        <section class="mb-8">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl font-bold mb-4">Overview</h2>
+                
+                <!-- Models Menu -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-3">Models</h3>
+                    <div id="modelsMenu" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Model buttons will be dynamically added here -->
+                        <div class="animate-pulse bg-gray-200 h-12 rounded-lg"></div>
+                        <div class="animate-pulse bg-gray-200 h-12 rounded-lg"></div>
+                        <div class="animate-pulse bg-gray-200 h-12 rounded-lg"></div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-lg p-6 mb-8 relative">
+                    <h2 class="text-xl font-semibold mb-4">Data Overview</h2>
+                    <div id="dataContainer" class="space-y-4">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-panel rounded-lg p-6 relative">
+                        <h2 class="text-xl font-semibold mb-4">Recent Activities</h2>
+                        <div id="activitiesContainer" class="overflow-x-auto">
+                            <table class="min-w-full table-auto">
+                                <thead>
+                                    <tr class="border-b border-gray-400">
+                                        <th class="px-4 py-2 text-left">Email</th>
+                                        <th class="px-4 py-2 text-left">Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="emailsTableBody">
+                                    <tr>
+                                        <td colspan="2" class="px-4 py-2">
+                                            <div class="animate-pulse">
+                                                <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-lg p-6 relative">
+                        <h2 class="text-xl font-semibold mb-4">Statistics</h2>
+                        <div id="statsContainer" class="space-y-2">
+                            <div class="animate-pulse">
+                                <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                                <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>

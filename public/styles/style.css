@@ -1,0 +1,360 @@
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: 'Sniglet', cursive;
+    font-weight: 400;
+    -webkit-text-stroke: 0.25px black;
+    text-stroke: 0.25px black;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    overflow-x: hidden;
+    background-color: black;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000 url('../images/background.gif') center center / cover no-repeat;
+    filter: blur(25px) brightness(0.2) contrast(1.3);
+    z-index: -2;
+    animation: moveBackground 30s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: center center;
+        transform: scale(1.1);
+    }
+    50% {
+        background-position: center center;
+        transform: scale(1);
+    }
+    100% {
+        background-position: center center;
+        transform: scale(1.1);
+    }
+}
+
+body::before img {
+    animation: none !important;
+}
+
+#cursor-effect {
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+/* Glass panel styling */
+.glass-panel {
+    background-color: rgba(255, 192, 203, 0.2);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 182, 193, 0.5) !important;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6),
+                inset 0 0 15px rgba(255, 182, 193, 0.4);
+    z-index: 1;
+}
+
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 192, 203, 0.08), rgba(255, 192, 203, 0.04));
+    border-radius: 0.5rem;
+    z-index: -1;
+}
+
+.glass-panel::after {
+    display: none !important;
+}
+
+/* Typography */
+h1 {
+    -webkit-text-stroke: 0.5px black;
+    text-stroke: 0.5px black;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+h1:hover {
+    transform: translateZ(10px);
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Sniglet', cursive;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Add a subtle hover effect to panels */
+.glass-panel {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 192, 203, 0.15) !important;
+}
+
+/* Remove any border from all elements */
+*, *::before, *::after {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Update text colors for better visibility */
+.text-gray-800 {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.text-gray-600, .text-gray-500 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Add a terminal-like cursor effect to headings */
+h1::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Typing Animation Styles */
+.cursor {
+    animation: blink 1s step-end infinite;
+    color: white;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typing-text {
+    position: relative;
+    color: #ff69b4;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+}
+
+/* Calendar Styling */
+.calendar-container {
+    background: transparent;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Sniglet', cursive;
+}
+
+.fc {
+    height: 100%;
+    background: transparent;
+    font-family: 'Sniglet', cursive !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
+    border: 2px solid rgba(255, 182, 193, 0.5) !important;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6),
+                inset 0 0 15px rgba(255, 182, 193, 0.4) !important;
+}
+
+.fc .fc-toolbar {
+    margin-bottom: 1.5rem;
+}
+
+.fc .fc-toolbar-title {
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem !important;
+}
+
+.fc .fc-button {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    color: white !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.fc .fc-button:hover {
+    background-color: rgba(255, 192, 203, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+.fc .fc-button-active {
+    background-color: rgba(255, 192, 203, 0.25) !important;
+}
+
+.fc-theme-standard td, 
+.fc-theme-standard th {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    font-weight: 500;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border: none !important;
+}
+
+.fc .fc-daygrid-day-number,
+.fc .fc-col-header-cell-cushion {
+    color: white;
+    opacity: 0.8;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(255, 192, 203, 0.15) !important;
+}
+
+.fc-event {
+    background-color: rgba(255, 192, 203, 0.15) !important;
+    border: none !important;
+    padding: 2px 4px;
+    margin: 1px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.fc-event:hover {
+    background-color: rgba(255, 192, 203, 0.25) !important;
+    transform: translateY(-1px);
+}
+
+.fc-event-title {
+    color: white !important;
+    font-weight: 600;
+}
+
+.message-box {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Sniglet', cursive;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 192, 203, 0.2);
+    border: 2px solid rgba(255, 182, 193, 0.5);
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6),
+                inset 0 0 15px rgba(255, 182, 193, 0.4);
+}
+
+#toggleCursor {
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#toggleCursor:hover {
+    transform: scale(1.05);
+}
+
+/* Model Button Styles */
+#modelsMenu button {
+    min-height: 80px;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#modelsMenu button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+#modelsMenu button:active {
+    transform: scale(0.98);
+}
+
+/* Landing Page Styles */
+.landing-page {
+    scroll-behavior: smooth;
+}
+
+.landing-page section {
+    position: relative;
+    z-index: 1;
+}
+
+.landing-page h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.landing-page h2 {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.landing-page input,
+.landing-page textarea {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.landing-page input:focus,
+.landing-page textarea:focus {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.landing-page nav {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    background-color: black;
+}
+
+.landing-page nav.scrolled {
+    transform: translateY(-100%);
+}
+
+.landing-page nav.visible {
+    transform: translateY(0);
+}
+
+.landing-page .glass-panel {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.landing-page .glass-panel:hover {
+    transform: translateY(-5px);
+}
+
+header a img {
+    transition: transform 0.3s ease;
+}
+
+header a:hover img {
+    transform: scale(1.05);
+}

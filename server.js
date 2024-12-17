@@ -1,21 +1,36 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files from the public directory
-app.use(express.static('public'));
+app.use('/js', express.static(path.join(__dirname, 'public/js')));
+app.use('/styles', express.static(path.join(__dirname, 'public/styles')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// Handle all routes by serving index.html
+// Routes
 app.get('/', (req, res) => {
+    console.log('Serving landing page');
     res.sendFile(path.join(__dirname, 'public', 'landing.html'));
 });
 
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/admin', (req, res) => {
+    console.log('Serving admin dashboard');
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
-// Start the server
+// Handle 404s
+app.use((req, res) => {
+    console.log('404 for', req.url);
+    res.status(404).send('Page not found');
+});
+
+// Start server
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Server is running on port ${port}`);
 });
